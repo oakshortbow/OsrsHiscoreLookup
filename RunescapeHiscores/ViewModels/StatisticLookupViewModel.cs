@@ -1,13 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using RunescapeHiscores.Models;
 using RunescapeHiscores.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RunescapeHiscores.ViewModels
@@ -31,14 +27,15 @@ namespace RunescapeHiscores.ViewModels
 
         private async void FetchStats()
         {
-            StatisticLookupModel.Levels = await _HiscoreClient.LookupStats(StatisticLookupModel.Name, StatisticLookupModel.SelectedType);
-            if (StatisticLookupModel.Levels != null)
+            var skills = await _HiscoreClient.LookupStats(StatisticLookupModel.Name, StatisticLookupModel.SelectedType);
+
+            if(skills == null)
             {
-                foreach (var item in StatisticLookupModel.Levels)
-                {
-                    Console.WriteLine(item);
-                }
+                StatisticLookupModel.Levels = null;
+                return;
             }
+            Queue<Skill> skillQueue = new Queue<Skill>((IEnumerable<Skill>)Enum.GetValues(typeof(Skill)));
+            StatisticLookupModel.Levels = skills.Select(tuple => new SkillModel(skillQueue.Dequeue(), tuple.Rank, tuple.Level, tuple.Xp)).ToList();
         }
     }
 

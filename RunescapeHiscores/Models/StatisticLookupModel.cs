@@ -11,10 +11,10 @@ namespace RunescapeHiscores.Models
     {
 
         public string _name;
-        private List<(int Rank, short Level, int Xp)> _levels;
+        private List<SkillModel> _levels;
         private LookupType _lookupType = LookupType.Normal;
 
-        public List<(int Rank, short Level, int Xp)> Levels
+        public List<SkillModel> Levels
         {
             get
             {
@@ -65,7 +65,7 @@ namespace RunescapeHiscores.Models
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public (int Rank, short Level, int Xp) GetSkill(Skill skill)
+        public SkillModel GetSkill(Skill skill)
         {
             return Levels[(int)skill];
         }

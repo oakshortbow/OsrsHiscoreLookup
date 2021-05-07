@@ -10,6 +10,6 @@
 		<Button x:Name="LookupBtn" Content="Lookup" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="75" Command="{Binding FetchStatsCommand}"/>
 		<TextBox HorizontalAlignment="Left" Height="20" Margin="23,10,0,0" TextWrapping="Wrap" Text="{Binding StatisticLookupModel.Name}"  VerticalAlignment="Top" Width="125" SpellCheck.IsEnabled="True"/>
 		<ComboBox x:Name="LookupTypeBox" SelectedItem="{Binding StatisticLookupModel.SelectedType}" ItemsSource="{Binding Types}" HorizontalAlignment="Left" Margin="244,8,0,0" VerticalAlignment="Top" Width="120"/>
-		<DataGrid HorizontalAlignment="Left" Height="344" Margin="23,35,0,0" VerticalAlignment="Top" Width="748" Background="White"/>
+		<DataGrid HorizontalAlignment="Left" Height="344" Margin="23,35,0,0" VerticalAlignment="Top" Width="748" Background="White" ItemsSource="{Binding StatisticLookupModel.Levels}"/>
 	</Grid>
 </Window>

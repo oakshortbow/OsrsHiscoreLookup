@@ -69,6 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\SkillModel.cs" />
     <Compile Include="Models\StatisticLookupModel.cs" />
     <Compile Include="Network\HiscoreClient.cs" />
     <Compile Include="ViewModels\StatisticLookupViewModel.cs" />
